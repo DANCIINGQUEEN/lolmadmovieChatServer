@@ -6,7 +6,7 @@ const {Server} = require('socket.io')
 
 app.use(cors())
 
-const server = http.createServer(app)
+const server = http.createServer(app).listen(3002)
 
 const io = new Server(server, {
     cors: {
@@ -40,11 +40,11 @@ io.on("connection", (socket)=>{
     //     })
     // })
 
-    socket.on("join_room", (data)=>{
-        socket.join(data)
-        console.log(data)
-        console.log(`user with id: ${socket.id} joined room : ${data}`)
-    })
+    // socket.on("join_room", (data)=>{
+    //     socket.join(data)
+    //     console.log(data)
+    //     console.log(`user with id: ${socket.id} joined room : ${data}`)
+    // })
     //
     // socket.on("send_message", (data)=>{
     //     console.log(data)
@@ -63,6 +63,6 @@ io.on("connection", (socket)=>{
 })
 
 
-server.listen(3002, () => {
-    console.log("server running")
-})
+// server.listen(process.env.PORT ||3002, () => {
+//     console.log("server running")
+// })
