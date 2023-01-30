@@ -5,14 +5,14 @@ const cors = require("cors")
 const {Server} = require('socket.io')
 const router=express.Router()
 
-let corsOptions={
-    origin:[
-        'https://lolmadmovie.vercel.app',
-        'http://localhost:3000',
-    ],
-    credentials:true
-}
-app.use(cors(corsOptions))
+// let corsOptions={
+//     origin:[
+//         'https://lolmadmovie.vercel.app',
+//         'http://localhost:3000',
+//     ],
+//     credentials:true
+// }
+// app.use(cors(corsOptions))
 
 const server = http.createServer(app).listen(3002)
 
@@ -74,12 +74,13 @@ io.on("connection", (socket)=>{
         console.log("user disconnected", socket.id)
     })
 })
-
-router.get('/', function (req,res){
-    res.render('index', {title:'i love you'})
+app.set('view engine', 'ejs')
+app.get('/', function (req,res){
+    res.render('index')
 })
 
 
 // server.listen(process.env.PORT ||3002, () => {
 //     console.log("server running")
 // })
+//d
