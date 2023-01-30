@@ -15,6 +15,7 @@ const io = new Server(server, {
             "https://socketio.bloggernepal.com",
             "http://localhost:3000",
         ],
+        credentials:true,
         method: ["GET", "POST"]
     }
 })
