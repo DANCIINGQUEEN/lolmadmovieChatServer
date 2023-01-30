@@ -14,7 +14,25 @@ const router=express.Router()
 // }
 // app.use(cors(corsOptions))
 
-const server = http.createServer(app).listen(3002)
+function normalizePort(val) {
+    var port = parseInt(val, 10);
+
+
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+
+    return false;
+}
+var port = normalizePort(process.env.PORT || '3002');
+
+const server = http.createServer(app).listen(port)
 
 
 const io = new Server(server
