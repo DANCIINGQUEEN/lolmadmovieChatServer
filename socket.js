@@ -26,7 +26,7 @@ const io = new Server(server
             "http://localhost:3000",
         ],
         credentials:true,
-        method: ["GET", "POST"]
+        // method: ["GET", "POST"]
     }
 }
 )
