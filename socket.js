@@ -3,23 +3,35 @@ const app = express()
 const http = require("http")
 const cors = require("cors")
 const {Server} = require('socket.io')
+const router=express.Router()
 
-app.use(cors())
+let corsOptions={
+    origin:[
+        'https://lolmadmovie.vercel.app',
+        'http://localhost:3000',
+    ],
+    credentials:true
+}
+app.use(cors(corsOptions))
 
 const server = http.createServer(app).listen(3002)
 
-const io = new Server(server, {
+
+const io = new Server(server
+    , {
     cors: {
         origin: [
             'https://lolmadmovie.vercel.app',
-            "https://socketio.bloggernepal.com",
+            // "https://socketio.bloggernepal.com",
             "http://localhost:3000",
         ],
         credentials:true,
         method: ["GET", "POST"]
     }
-})
+}
+)
 
+// const io=socketio(server)
 // io.use((socket, next)=>{
 //     let key=socket.handshake.query.key
 //     if(key){
@@ -61,6 +73,10 @@ io.on("connection", (socket)=>{
     socket.on("disconnect", ()=>{
         console.log("user disconnected", socket.id)
     })
+})
+
+router.get('/', function (req,res){
+    res.render('index', {title:'i love you'})
 })
 
 
